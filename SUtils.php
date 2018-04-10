@@ -12,39 +12,39 @@ class SUtils{
     ];
     const MAX_COOKIE_TIME = 2147483647;
 
-    public static function dump($data) : void {
+    public static function dump($data){
         echo '<pre>';
         print_r($data);
         echo '</pre>';
     }
 
-    public static function dump_console($data) : void {
+    public static function dump_console($data){
         echo  "\n";
         print_r($data);
         echo  "\n";
     }
 
-    public static function trace($data = [], $trail = '---') : void {
+    public static function trace($data = [], $trail = '---'){
         echo '<pre>';
         print_r($data);
         echo '</pre>';
         die($trail);
     }
 
-    public static function var($data, $trail = '---') : void {
+    public static function var($data, $trail = '---'){
         var_dump($data);
         die($trail);
     }
 
-    public static function to_s($data, $pre = false) : string {
+    public static function to_s($data, $pre = false){
         return $pre ? '<pre>'.print_r($data, true).'</pre>' : print_r($data, true);
     }
 
-    public static function to_s_special($data, $pre = false) : string {
+    public static function to_s_special($data, $pre = false){
         return $pre ? htmlspecialchars('<pre>'.print_r($data, true).'</pre>') : htmlspecialchars(print_r($data, true));
     }
 
-    public static function get_client_ip() : ?string {
+    public static function get_client_ip(){
         if (getenv('HTTP_CLIENT_IP'))
             $ipAddress = getenv('HTTP_CLIENT_IP');
         else if(getenv('HTTP_X_FORWARDED_FOR'))
@@ -62,7 +62,7 @@ class SUtils{
         return $ipAddress;
     }
 
-    public static function removeSpaces(string $str) : string {
+    public static function removeSpaces($str){
         if(strpos($str, '  ') !== false)
             return self::removeSpaces(str_replace('  ', ' ', $str));
         else return trim(str_replace("\r\n", '',$str));
@@ -76,7 +76,7 @@ class SUtils{
         file_put_contents($path, $date.': '.$data."\n", FILE_APPEND);
     }
 
-    public static function normalizeTel(string $tel) : string{
+    public static function normalizeTel(string $tel){
         $tel = str_replace('(', '', $tel);
         $tel = str_replace(')', '', $tel);
         $tel = str_replace(' ', '', $tel);
@@ -84,7 +84,7 @@ class SUtils{
         return trim($tel);
     }
 
-    public static function getDirContents($dir, &$results = array()) : array {
+    public static function getDirContents($dir, &$results = array()){
         $files = @scandir($dir);
         if(!is_array($files) || !$files) return [];
         foreach($files as $key => $value){
@@ -121,7 +121,7 @@ class SUtils{
         return $r;
     }
 
-    public static function getTimeDifference(\DateTime $dateTime, $unit, $precision){
+    public static function getTimeDifference($dateTime, $unit, $precision){
         $nowTime = time();
         $inputTime = $dateTime->getTimestamp();
         $diff = $nowTime - $inputTime;
@@ -164,11 +164,11 @@ class SUtils{
         return $headers;
     }
 
-    public static function dateTimeToString(\DateTime $dateTime, $format = 'Y-m-d H:i:s'){
+    public static function dateTimeToString($dateTime, $format = 'Y-m-d H:i:s'){
         return $dateTime->format($format);
     }
 
-    public static function dateOlderThan(\DateTime $date, int $than){
+    public static function dateOlderThan($date, $than){
         $now = new \DateTime();
         $time_diff = $now->getTimestamp() - $date->getTimestamp();
         return $time_diff > $than;
@@ -189,7 +189,7 @@ class SUtils{
         return substr($path, strrpos($path, '/') + 1);
     }
 
-    public static function getFirstMissingNumber(array $array){
+    public static function getFirstMissingNumber($array){
         if(empty($array))
             return 1;
 
@@ -226,11 +226,11 @@ class SUtils{
         return $url;
     }
 
-    public static function getFilenameFromPath(string $path) : string {
+    public static function getFilenameFromPath($path){
         return basename($path);
     }
 
-    public static function randomCharacter() : string {
+    public static function randomCharacter(){
         $seed = str_split('abcdefghijklmnopqrstuvwxyz'
             .'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
             .'0123456789');
@@ -238,14 +238,14 @@ class SUtils{
         return $seed[0];
     }
 
-    public static function getRuMonthDeclined(int $date){
+    public static function getRuMonthDeclined($date){
         $format = '%bg';
         $months = explode("|", '|Января|Февраля|Марта|Апреля|Мая|Июня|Июля|Августа|Сентября|Октября|Ноября|Декабря');
         $format = preg_replace("~\%bg~", $months[date('n', $date)], $format);
         return strftime($format, $date);
     }
 
-    public static function getRuMonth(int $date){
+    public static function getRuMonth($date){
         $format = '%bg';
         $months = explode("|", '|Январь|Февраль|Март|Апрель|Май|Июнь|Июль|Август|Сентябрь|Октябрь|Ноябрь|Декабрь');
         $format = preg_replace("~\%bg~", $months[date('n', $date)], $format);

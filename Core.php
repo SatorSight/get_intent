@@ -1,8 +1,8 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 
 require 'SUtils.php';
 require 'Helper.php';
@@ -186,20 +186,20 @@ class Core{
         return $data;
     }
 
-    private static function getAdvertiserInfoURL($advertiser_id) : string {
+    private static function getAdvertiserInfoURL($advertiser_id){
         $url = self::ADVERTISER_INFO_URL;
         $url = str_replace('<advertiser_id>', $advertiser_id, $url);
         return $url;
     }
 
-    private static function getCampaignEditURL($advertiser_id, $campaign_id) : string {
+    private static function getCampaignEditURL($advertiser_id, $campaign_id){
         $url = self::CAMPAIGN_EDIT_URL;
         $url = str_replace('<advertiser_id>', $advertiser_id, $url);
         $url = str_replace('<campaign_id>', $campaign_id, $url);
         return $url;
     }
 
-    private static function getCampaignInfoURL($advertiser_id, $campaign_id) : string {
+    private static function getCampaignInfoURL($advertiser_id, $campaign_id){
         $url = self::CAMPAIGN_INFO_URL;
         $url = str_replace('<advertiser_id>', $advertiser_id, $url);
         $url = str_replace('<campaign_id>', $campaign_id, $url);

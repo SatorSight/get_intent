@@ -31,10 +31,10 @@ class SUtils{
         die($trail);
     }
 
-    public static function var($data, $trail = '---'){
-        var_dump($data);
-        die($trail);
-    }
+//    public static function var($data, $trail = '---'){
+//        var_dump($data);
+//        die($trail);
+//    }
 
     public static function to_s($data, $pre = false){
         return $pre ? '<pre>'.print_r($data, true).'</pre>' : print_r($data, true);

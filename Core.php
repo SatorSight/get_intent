@@ -66,7 +66,7 @@ class Core{
             foreach ($ip_ranges as $ip_mask){
                 $op = self::getOpForMask($ip_mask);
                 $op = strtolower($op);
-                if(!in_array($op, $ops))
+                if(!in_array($op, $ops) && !empty($op))
                     array_push($ops, $op);
             }
 
@@ -128,6 +128,7 @@ class Core{
             });
 
             $ip_masks = array_map(function($mask){
+                $mask = str_replace(' ', '', $mask);
                 return trim($mask);
             }, $ip_masks);
 
